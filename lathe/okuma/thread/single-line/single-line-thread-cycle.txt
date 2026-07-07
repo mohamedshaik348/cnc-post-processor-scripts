@@ -1,0 +1,15 @@
+ 
+
+1087. Start of thread (G76) cycle 
+
+    n,"G71",thread_x2,thread_z2,program_block_1,thread_first_cut_decimal,thread_last_cut,program_block_3,thread_lead,"M22","M73","M32" 
+
+
+2001. Program Block 1 
+      //thread_height_decimal - H Prefix 
+
+     Dim thdHeight: thdHeight = FormatNumber((LATHE_GetThreadHeight() * 2),4,-1,,0) 
+     Dim retstr: retstr = "" 
+     retstr = " H" & thdHeight 
+
+     LATHE_SetReturnString(retstr) 
