@@ -1,0 +1,38 @@
+4. Null tool change
+	n,rapid_move_forced,absolute_coord,machine_coordinate_code,"Z0."
+  
+  //Sends spindle to the second home position only when the table tilts.
+  program_block_7 
+	
+	n,work_coord,movement_mode
+	" "
+	"(",feature_name,"- ",operation_name,")"
+	"(TOOL #",list_tool_number," ",tool_diameter," ",tool_label,")"
+	
+	n,rotary_clamp_off
+	n,s_rotary_clamp_off 
+	n,work_coord,movement_mode
+  
+  // Output high speed mode on command if it is selected
+	program_block_1	
+  
+	output_secondary_rotary_index
+	output_primary_rotary_index
+	n,origin_tracking_on
+	n,force_x,force_y,rapid_move_forced,initpos_x,initpos_y,s_rot,p_rot,s 
+	n,force_z,rapid_move,length_offset,initpos_z,coolant_on
+
+  // Output rotary axes clamp codes for 3-axis and index operations
+	program_block_3		
+
+
+2007. Program Block 7.
+ //This script checks the current second rotary angle with previous second rotary angle.
+ //If the current second rotary angle is different than the previous angle, then the logic outputs safe positioning move 
+ //to send the spindle to the second home position to prevent machine crash.
+ 
+	If MILL_Get_PrevSRot() <> MILL_Get_SRot() Then
+		
+		MILL_ProcessPostLine("n,rapid_move_forced,absolute_coord,machine_coordinate_code,'Y0.','X-30.'")
+    
+  End If
