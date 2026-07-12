@@ -1,0 +1,30 @@
+2. Start of file standard
+		output_note
+	
+		n,rapid_move_forced, "G17", measure_mode,force_cancel_offset,"G49",cancel_drill_cycle,
+		n,work_coord,absolute_coord
+		n,machine_coordinate_code,rapid_move_forced,"Z0."
+		" "
+	  feature_name_comment                    
+	  operation_name_comment
+		" "
+		MDI_BeforeToolChange
+		n,"M06",t,"(",tool_label,")"
+		n,work_coord
+		n,work_plane	
+		MDI_AfterToolChange
+		n,rapid_move_forced,"X0.","Y0.","B0.","C0.",s,spindle_on 
+		n,length_offset
+		initial_positioning
+		
+   
+  31. Initial positioning code for operation on transform plane
+  	n,rapid_move_forced,"X-30"
+  	n,'G68.2','P1','Q123' 'X', transform_plane_origin_1, 'Y', transform_plane_origin_2, 'Z', transform_plane_origin_3,"I",rpy_angle_xyz_extrinsic_1,"J",rpy_angle_xyz_extrinsic_2,"K",rpy_angle_xyz_extrinsic_3
+  	n,"G53.1"
+  	n,force_x,force_y,rapid_move_forced,xr_transform,yr_transform
+  	n,force_z,zr_transform	
+
+
+
+
